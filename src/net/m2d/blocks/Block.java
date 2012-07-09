@@ -1,227 +1,234 @@
 package net.m2d.blocks;
 
-import java.util.Random;
-
 import net.m2d.GUI.Stack;
 import net.m2d.graphics.GraphUtil;
+import net.m2d.main.Drawable;
+import net.m2d.main.Logger;
 import net.m2d.main.Logger.Level;
-import net.m2d.main.*;
-
+import net.m2d.main.World;
 import org.newdawn.slick.Image;
 
+import java.util.Random;
 
-// TODO Añadir dureza, etc.
-// TODO Más bloques
+
+// TODO AÃ±adir dureza, etc.
+// TODO MÃ¡s bloques
 
 
 /**
- * 
  * @author Aritzh with help of Mojang
- *
  */
 public class Block implements Drawable {
 
-	public boolean draw = true;
-	public static final int SIZE = 32;
-	private Image tex;
-	private String name;
-	private static Logger logger = new Logger("Block", Level.ALL);
+    public boolean draw = true;
+    public static final int SIZE = 32;
+    private Image tex;
+    private String name;
+    private static Logger logger = new Logger("Block", Level.ALL);
 
-	public static final Block[] blocksList = new Block[4096];
+    public static final Block[] blocksList = new Block[4096];
 
-	public static final Block air = new BlockAir(); // ID = 0
-	public static final Block stone = new BlockStone(); // ID = 1
-	public static final Block grass = new BlockGrass(); // ID = 2
-	public static final Block dirt = new BlockDirt(); // ID = 3
-	public static final Block wood = new BlockLog(); // ID = 4
-	public static final Block leave = new BlockLeaves(); // ID = 5
-	public static final Block obsidian = new BlockObsidian(); // ID = 6
-	public static final Block bedrock = new BlockBedRock(); // ID = 7
-	
-	public static final Block blockTest = new BlockCracked(); // ID = 8
-			
-	public void addBlock(Block block, int id) {
+    public static final Block air = new BlockAir(); // ID = 0
+    public static final Block stone = new BlockStone(); // ID = 1
+    public static final Block grass = new BlockGrass(); // ID = 2
+    public static final Block dirt = new BlockDirt(); // ID = 3
+    public static final Block wood = new BlockLog(); // ID = 4
+    public static final Block leave = new BlockLeaves(); // ID = 5
+    public static final Block obsidian = new BlockObsidian(); // ID = 6
+    public static final Block bedrock = new BlockBedRock(); // ID = 7
 
-		while (blocksList[id] != block) {
-			if (blocksList[id] == null) {
-				block.id = id;
-				blocksList[id] = block;
-			} else {
-			logger.log("El id " + id + " esta ocupado por "
-					+ blocksList[id] + ". Error al añadir " + this, Level.RELEASE_DEBUG);
-			logger.log("Intentando usar el id: " + id++, Level.RELEASE_DEBUG);
-			}
-		}
+    public static final Block blockTest = new BlockCracked(); // ID = 8
 
-	}
+    public void addBlock(Block block, int id) {
 
-	/** ID of the block. */
-	public int id;
+        while (blocksList[id] != block) {
+            if (blocksList[id] == null) {
+                block.id = id;
+                blocksList[id] = block;
+            } else {
+                logger.log("El id " + id + " esta ocupado por "
+                        + blocksList[id] + ". Error al aÃ±adir " + this, Level.RELEASE_DEBUG);
+                logger.log("Intentando usar el id: " + id++, Level.RELEASE_DEBUG);
+            }
+        }
 
-	/** Indicates how many hits it takes to break a block. */
-	protected int hardness;
+    }
 
-	/** Indicates the blocks resistance to explosions. */
-	protected float resistance;
+    /**
+     * ID of the block.
+     */
+    public int id;
 
-	public double minX, minY, maxX, maxY;
+    /**
+     * Indicates how many hits it takes to break a block.
+     */
+    protected int hardness;
 
-	/**
-	 * Determines how much velocity is maintained while moving on top of this
-	 * block
-	 */
-	public float slipperiness;
+    /**
+     * Indicates the blocks resistance to explosions.
+     */
+    protected float resistance;
 
-	protected Block(int ID, String name) {
-		this.slipperiness = 0.6F;
-		this.name = name;
-		tex = GraphUtil.getImgFromSheet("res/blocks.def", this.name.toLowerCase() + ".png");
+    public double minX, minY, maxX, maxY;
 
-		addBlock(this, ID);
-		this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F);
-	}
+    /**
+     * Determines how much velocity is maintained while moving on top of this
+     * block
+     */
+    public float slipperiness;
 
-	/**
-	 * Sets the the blocks resistance to explosions. Returns the object for
-	 * convenience in constructing.
-	 */
-	protected Block setResistance(float par1) {
-		this.resistance = par1 * 3.0F;
-		return this;
-	}
+    protected Block(int ID, String name) {
+        this.slipperiness = 0.6F;
+        this.name = name;
+        tex = GraphUtil.getImgFromSheet("res/blocks.def", this.name.toLowerCase() + ".png");
 
-	/**
-	 * Sets how many hits it takes to break a block.
-	 */
-	protected Block setHardness(int hardness) {
-		this.hardness = hardness;
-		return this;
-	}
+        addBlock(this, ID);
+        this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F);
+    }
 
-	/**
-	 * This method will make the hardness of the block equals to -1, and the
-	 * block is indestructible.
-	 */
-	protected Block setBlockUnbreakable() {
-		this.setHardness(-1);
-		return this;
-	}
+    /**
+     * Sets the the blocks resistance to explosions. Returns the object for
+     * convenience in constructing.
+     */
+    protected Block setResistance(float par1) {
+        this.resistance = par1 * 3.0F;
+        return this;
+    }
 
-	/**
-	 * Returns the block hardness.
-	 */
-	public float getHardness() {
-		return this.hardness;
-	}
+    /**
+     * Sets how many hits it takes to break a block.
+     */
+    protected Block setHardness(int hardness) {
+        this.hardness = hardness;
+        return this;
+    }
 
-	/**
-	 * Sets the bounds of the block. minX, minY, minZ, maxX, maxY, maxZ
-	 */
-	public void setBlockBounds(float minX, float minY, float maxX, float maxY) {
-		this.minX = (double) minX;
-		this.minY = (double) minY;
-		this.maxX = (double) maxX;
-		this.maxY = (double) maxY;
-	}
+    /**
+     * This method will make the hardness of the block equals to -1, and the
+     * block is indestructible.
+     */
+    protected Block setBlockUnbreakable() {
+        this.setHardness(-1);
+        return this;
+    }
 
-	/**
-	 * Returns if this block is collidable (only used by Fire). Args: x, y, z
-	 */
-	public boolean isCollidable() {
-		return true;
-	}
+    /**
+     * Returns the block hardness.
+     */
+    public float getHardness() {
+        return this.hardness;
+    }
 
-	/**
-	 * Ticks the block if it's been scheduled
-	 */
-	public void updateTick(World par1World, int par2, int par3, int par4,
-			Random par5Random) {
-	}
+    /**
+     * Sets the bounds of the block. minX, minY, minZ, maxX, maxY, maxZ
+     */
+    public void setBlockBounds(float minX, float minY, float maxX, float maxY) {
+        this.minX = (double) minX;
+        this.minY = (double) minY;
+        this.maxX = (double) maxX;
+        this.maxY = (double) maxY;
+    }
 
-	/**
-	 * Lets the block know when one of its neighbor changes. Doesn't know which
-	 * neighbor changed (coordinates passed are their own) Args: x, y, z,
-	 * neighbor blockID
-	 */
-	public void onNeighborBlockChange(World par1World, int par2, int par3,
-			int par4, int par5) {
-	}
+    /**
+     * Returns if this block is collidable (only used by Fire). Args: x, y, z
+     */
+    public boolean isCollidable() {
+        return true;
+    }
 
-	/**
-	 * Called whenever the block is added into the world. Args: world, x, y, z
-	 */
-	public void onBlockAdded() {
-	}
+    /**
+     * Ticks the block if it's been scheduled
+     */
+    public void updateTick(World par1World, int par2, int par3, int par4,
+                           Random par5Random) {
+    }
 
-	/**
-	 * Called whenever the block is removed.
-	 */
-	public void onBlockRemoved() {
-	}
+    /**
+     * Lets the block know when one of its neighbor changes. Doesn't know which
+     * neighbor changed (coordinates passed are their own) Args: x, y, z,
+     * neighbor blockID
+     */
+    public void onNeighborBlockChange(World par1World, int par2, int par3,
+                                      int par4, int par5) {
+    }
 
-	/**
-	 * Returns the ID of the items to drop on destruction.
-	 * TODO Cambiar esto!
-	 */
-	public Stack drop() {
-		return new Stack(this.id, 1);
-	}
+    /**
+     * Called whenever the block is added into the world. Args: world, x, y, z
+     */
+    public void onBlockAdded() {
+    }
 
-	/**
-	 * Called when a block is placed using an item. Used often for taking the
-	 * facing and figuring out how to position the item. Args: x, y, z, facing
-	 */
-	public void onBlockPlaced() {
-	};
+    /**
+     * Called whenever the block is removed.
+     */
+    public void onBlockRemoved() {
+    }
 
-	public Block setName(String name) {
-		this.name = name;
-		return this;
-	}
+    /**
+     * Returns the ID of the items to drop on destruction.
+     * TODO Cambiar esto!
+     */
+    public Stack drop() {
+        return new Stack(this.id, 1);
+    }
 
-	public String getName() {
-		return this.name;
-	}
+    /**
+     * Called when a block is placed using an item. Used often for taking the
+     * facing and figuring out how to position the item. Args: x, y, z, facing
+     */
+    public void onBlockPlaced() {
+    }
 
-	/**
-	 * Metadata sensitive version of the default getHardness function.
-	 * 
-	 * @param meta
-	 *            The block's current metatdata
-	 * @return Block hardness
-	 */
-	public float getHardness(int meta) {
-		return hardness;
-	}
+    ;
 
-	public void draw(int x, int y) {
-		draw(x, y, SIZE, SIZE);
+    public Block setName(String name) {
+        this.name = name;
+        return this;
+    }
 
-	}
+    public String getName() {
+        return this.name;
+    }
 
-	@Deprecated
-	public void draw() {
-		draw(0,0);
-		
-	}
+    /**
+     * Metadata sensitive version of the default getHardness function.
+     *
+     * @param meta The block's current metatdata
+     * @return Block hardness
+     */
+    public float getHardness(int meta) {
+        return hardness;
+    }
 
-	public void draw(int x, int y, int width, int height) {
-		if (tex != null && draw) {
-			tex.draw(x, y, width, height);
-		}
-	}
-	
-	
-	public static int nextFreeID(){
-		int x = 0;
-		for(Block b : blocksList){
-			if(b == null){
-				return x;
-			}
-			x++;
-		}
-		
-		return -1;
-	}
+    public void draw(int x, int y) {
+        draw(x, y, SIZE, SIZE);
+
+    }
+
+    @Deprecated
+    @Override
+    public void draw() {
+        draw(0, 0);
+
+    }
+
+    public void draw(int x, int y, int width, int height) {
+        if (tex != null && draw) {
+            tex.draw(x, y, width, height);
+        }
+    }
+
+
+    public static int nextFreeID() {
+        int x = 0;
+        for (Block b : blocksList) {
+            if (b == null) {
+                return x;
+            }
+            x++;
+        }
+
+        return -1;
+    }
 
 }
