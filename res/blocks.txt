@@ -1,0 +1,529 @@
+Simple plain text exporter for demo purposes
+
+See http://www.grantlee.org/apidox/for_themers.html for more information
+
+Texture data:
+    texture.width  = 104
+    texture.height = 104
+
+    texture.trimmedName = blocks
+    texture.fullName = blocks.png
+    texture.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/blocks.png
+
+SmartUpdateHash: $TexturePacker:SmartUpdate:29e3b197bf000b2609bf120d0f98426c$
+
+Sprite data:
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = stone
+
+    -- name with image extension
+    sprite.fullName         = stone.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 36
+    sprite.frameRect.y = 70
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.346153846153846
+    sprite.frameRectRel.y = 0.673076923076923
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 36
+    sprite.frameRectWithoutRotation.y = 70
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/stone.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-08T19:57:57
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T19:57:56
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 2438
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = air
+
+    -- name with image extension
+    sprite.fullName         = air.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 2
+    sprite.frameRect.y = 2
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.0192307692307692
+    sprite.frameRectRel.y = 0.0192307692307692
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 2
+    sprite.frameRectWithoutRotation.y = 2
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/air.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-05-20T13:07:31
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-05-20T13:07:31
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 2791
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = cracked
+
+    -- name with image extension
+    sprite.fullName         = cracked.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 36
+    sprite.frameRect.y = 2
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.346153846153846
+    sprite.frameRectRel.y = 0.0192307692307692
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 36
+    sprite.frameRectWithoutRotation.y = 2
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/cracked.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-10T17:43:15
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-10T17:43:14
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 485
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = dirt
+
+    -- name with image extension
+    sprite.fullName         = dirt.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 70
+    sprite.frameRect.y = 2
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.673076923076923
+    sprite.frameRectRel.y = 0.0192307692307692
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 70
+    sprite.frameRectWithoutRotation.y = 2
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/dirt.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-08T19:59:17
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T19:52:25
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 2486
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = grass
+
+    -- name with image extension
+    sprite.fullName         = grass.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 2
+    sprite.frameRect.y = 36
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.0192307692307692
+    sprite.frameRectRel.y = 0.346153846153846
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 2
+    sprite.frameRectWithoutRotation.y = 36
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/grass.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-08T20:01:40
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T19:55:56
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 2775
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = leaves
+
+    -- name with image extension
+    sprite.fullName         = leaves.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 36
+    sprite.frameRect.y = 36
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.346153846153846
+    sprite.frameRectRel.y = 0.346153846153846
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 36
+    sprite.frameRectWithoutRotation.y = 36
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/leaves.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-09T11:32:18
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T21:22:47
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 1586
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = log
+
+    -- name with image extension
+    sprite.fullName         = log.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 70
+    sprite.frameRect.y = 36
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.673076923076923
+    sprite.frameRectRel.y = 0.346153846153846
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 70
+    sprite.frameRectWithoutRotation.y = 36
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/log.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-08T20:58:12
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T20:58:12
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 1083
+
+
+    =========================================================================
+
+    -- name without image type extension
+    sprite.trimmedName      = obsidian
+
+    -- name with image extension
+    sprite.fullName         = obsidian.png
+
+    -- offset of the center of the trimmed sprite from the
+    -- center of the original sprite (used by cocos2d)
+    sprite.absoluteOffset.x = 0
+    sprite.absoluteOffset.y = 0
+
+    -- list of alias sprites for this one
+    sprite.aliasList = 
+
+    --- frame rectangle with pixel coordinates
+    sprite.frameRect.x = 2
+    sprite.frameRect.y = 70
+    sprite.frameRect.width = 32
+    sprite.frameRect.height = 32
+
+    --- frame rectangle with uv coordinates (0..1)
+    sprite.frameRectRel.x = 0.0192307692307692
+    sprite.frameRectRel.y = 0.673076923076923
+    sprite.frameRectRel.width = 0.307692307692308
+    sprite.frameRectRel.height = 0.307692307692308
+
+    --- version of the frame rect with "original" width and height
+    sprite.frameRectWithoutRotation.x = 2
+    sprite.frameRectWithoutRotation.y = 70
+    sprite.frameRectWithoutRotation.width = 32
+    sprite.frameRectWithoutRotation.height = 32
+
+    -- true if the sprite was rotated
+    sprite.rotated        = false
+
+    -- true if the sprite was trimmed
+    sprite.trimmed        = false
+
+    sprite.sourceRect.x = 0
+    sprite.sourceRect.y = 0
+    sprite.sourceRect.width = 32
+    sprite.sourceRect.height = 32
+
+    sprite.cornerOffset.x = 0
+    sprite.cornerOffset.y = 0
+
+    sprite.untrimmedSize.width = 32
+    sprite.untrimmedSize.height = 32
+
+    -- the file absolute file name of the sprite
+    sprite.fileData.absoluteFileName = C:/Users/usuario/Proyectos/M2D/res/sprites/obsidian.png
+
+    -- the modification date of the sprite
+    sprite.fileData.lastModified = 2012-06-08T21:23:13
+
+    -- the creation date of the sprite
+    sprite.fileData.created = 2012-06-08T21:23:13
+
+    -- the file size of the sprite
+    sprite.fileData.fileSize = 2504
+
+
+
