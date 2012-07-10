@@ -50,7 +50,7 @@ public class Game {
     private long lastFrame, lastFPS, fps, fpp;
     private Image background;
 
-    Logger logger = new Logger("Game", Level.ALL);
+    private Logger logger = new Logger("Game", Level.ALL);
 
     private static ToolBar tb;
 
@@ -223,7 +223,7 @@ public class Game {
     /**
      * @return The amount of time has passed since last frame
      */
-    public float getDelta() {
+    float getDelta() {
         long time = (System.nanoTime() / 1000000);
         float delta = time - lastFrame;
         lastFrame = time;
@@ -233,7 +233,7 @@ public class Game {
     /**
      * Updates the {@link #fps} variable
      */
-    public void updateFPS() {
+    void updateFPS() {
         if ((System.nanoTime() / 1000000) - lastFPS > 1000) {
             Display.setTitle("FPS: " + fpp);
             fps = fpp;

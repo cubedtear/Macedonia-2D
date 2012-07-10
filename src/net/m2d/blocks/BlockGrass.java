@@ -1,10 +1,10 @@
 package net.m2d.blocks;
 
-public class BlockGrass extends Block {
+class BlockGrass extends Block {
 
-	public BlockGrass() {
-		super(nextFreeID(), "Grass");
-		this.setHardness(100);
-	}
+    public BlockGrass() {
+        super(nextFreeID(), "Grass");
+        this.setHardness(100);
+    }
 
 }

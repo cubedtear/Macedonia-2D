@@ -2,14 +2,14 @@ package net.m2d.blocks;
 
 public class BlockLeaves extends Block {
 
-	protected BlockLeaves() {
-		super(nextFreeID(), "Leaves");
-		this.setHardness(100);
-	}
-	
-	@Override
-	public boolean isCollidable(){
-		return false;
-	}
+    BlockLeaves() {
+        super(nextFreeID(), "Leaves");
+        this.setHardness(100);
+    }
+
+    @Override
+    public boolean isCollidable() {
+        return false;
+    }
 
 }

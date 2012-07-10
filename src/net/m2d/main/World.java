@@ -13,7 +13,8 @@ import java.io.*;
  */
 public class World implements Drawable {
 
-    public static int BWIDTH = 50, BHEIGHT = 15;
+    private static final int BWIDTH = 50;
+    private static final int BHEIGHT = 15;
     private InstanceBlock[][] blocks;
     private Player player;
     private Logger logger = new Logger(this.getClass().getName(), Level.ALL);
@@ -56,7 +57,7 @@ public class World implements Drawable {
 
     }
 
-    public String save() {
+    String save() {
         String file = "";
         for (int y = 0; y < BHEIGHT; y++) {
             for (int x = 0; x < BWIDTH; x++) {
@@ -80,7 +81,7 @@ public class World implements Drawable {
 
     }
 
-    public void load(String mundo) {
+    void load(String mundo) {
         int px = 0, py = 0, pdir = 0;
         try {
             String[] partes;

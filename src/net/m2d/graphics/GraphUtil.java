@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 
 public class GraphUtil {
 
-    static Logger logger = new Logger("GraphUtil", Level.ALL);
+    private static Logger logger = new Logger("GraphUtil", Level.ALL);
 
     public static org.newdawn.slick.Image getImgFromSheet(String sheet, String name) {
         PackedSpriteSheet sh;

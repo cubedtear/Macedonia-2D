@@ -15,9 +15,9 @@ public class ToolBar implements Drawable {
 
     private int currTool;
     private Stack[] tools;
-    Logger logger = new Logger("ToolBar", Level.ALL);
+    private Logger logger = new Logger("ToolBar", Level.ALL);
     private Image barTex, selTex;
-    PackedSpriteSheet sh;
+    private PackedSpriteSheet sh;
 
     @Override
     public void draw() {

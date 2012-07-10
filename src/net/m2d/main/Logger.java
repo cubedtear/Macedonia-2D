@@ -4,7 +4,7 @@ package net.m2d.main;
 public class Logger {
 
     private Level level = Level.OFF;
-    private String name;
+    private final String name;
 
     public Logger(String name, Level level) {
         this.name = name;

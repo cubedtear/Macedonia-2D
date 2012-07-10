@@ -20,11 +20,11 @@ import java.util.Random;
  */
 public class Block implements Drawable {
 
-    public boolean draw = true;
+    private boolean draw = true;
     public static final int SIZE = 32;
     private Image tex;
     private String name;
-    private static Logger logger = new Logger("Block", Level.ALL);
+    private static final Logger logger = new Logger("Block", Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
 
@@ -62,22 +62,25 @@ public class Block implements Drawable {
     /**
      * Indicates how many hits it takes to break a block.
      */
-    protected int hardness;
+    int hardness;
 
     /**
      * Indicates the blocks resistance to explosions.
      */
-    protected float resistance;
+    private float resistance;
 
-    public double minX, minY, maxX, maxY;
+    private double minX;
+    private double minY;
+    private double maxX;
+    private double maxY;
 
     /**
      * Determines how much velocity is maintained while moving on top of this
      * block
      */
-    public float slipperiness;
+    private float slipperiness;
 
-    protected Block(int ID, String name) {
+    Block(int ID, String name) {
         this.slipperiness = 0.6F;
         this.name = name;
         tex = GraphUtil.getImgFromSheet("res/blocks.def", this.name.toLowerCase() + ".png");
@@ -98,7 +101,7 @@ public class Block implements Drawable {
     /**
      * Sets how many hits it takes to break a block.
      */
-    protected Block setHardness(int hardness) {
+    Block setHardness(int hardness) {
         this.hardness = hardness;
         return this;
     }
@@ -107,7 +110,7 @@ public class Block implements Drawable {
      * This method will make the hardness of the block equals to -1, and the
      * block is indestructible.
      */
-    protected Block setBlockUnbreakable() {
+    Block setBlockUnbreakable() {
         this.setHardness(-1);
         return this;
     }
@@ -122,7 +125,7 @@ public class Block implements Drawable {
     /**
      * Sets the bounds of the block. minX, minY, minZ, maxX, maxY, maxZ
      */
-    public void setBlockBounds(float minX, float minY, float maxX, float maxY) {
+    void setBlockBounds(float minX, float minY, float maxX, float maxY) {
         this.minX = (double) minX;
         this.minY = (double) minY;
         this.maxX = (double) maxX;
@@ -179,8 +182,6 @@ public class Block implements Drawable {
     public void onBlockPlaced() {
     }
 
-    ;
-
     public Block setName(String name) {
         this.name = name;
         return this;
@@ -200,15 +201,8 @@ public class Block implements Drawable {
         return hardness;
     }
 
-    public void draw(int x, int y) {
-        draw(x, y, SIZE, SIZE);
-
-    }
-
-    @Deprecated
-    @Override
     public void draw() {
-        draw(0, 0);
+        draw(0, 0, SIZE, SIZE);
 
     }
 
@@ -219,7 +213,7 @@ public class Block implements Drawable {
     }
 
 
-    public static int nextFreeID() {
+    static int nextFreeID() {
         int x = 0;
         for (Block b : blocksList) {
             if (b == null) {
