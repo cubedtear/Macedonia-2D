@@ -2,7 +2,7 @@
 
 Este repositorio contiene el código fuente de Macedonia 2D
 
-![Main Image of the Proyect ](http://imgur.com/kXxce)
+[Imgur](http://i.imgur.com/kXxce)
 
 Por favor, ve a la sección de  [problemas](https://github.com/github/Macedonia-2D/issues) para reportar cualquier bug añadir alguna sugerencia. (Por favor, cerciorate de que no este ya añadid@)
 
