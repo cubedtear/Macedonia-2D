@@ -3,7 +3,7 @@ package net.m2d.blocks;
 public class BlockBedRock extends Block {
 
 	public BlockBedRock(){
-		super(nextFreeID(), "BedRock");
+		super("BedRock");
 		this.setBlockUnbreakable();
 	}
 	@Override

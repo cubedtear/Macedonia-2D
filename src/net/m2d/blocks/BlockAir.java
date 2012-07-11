@@ -3,7 +3,7 @@ package net.m2d.blocks;
 public class BlockAir extends Block {
 
 	public BlockAir() {
-		super(nextFreeID(), "Air");
+		super("Air");
 		this.setBlockUnbreakable();
 	}
 

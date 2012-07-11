@@ -10,20 +10,16 @@ import org.newdawn.slick.Image;
 
 import java.util.Random;
 
-
-// TODO Añadir dureza, etc.
-// TODO Más bloques
-
-
 /**
  * @author Aritzh with help of Mojang
  */
+
 public class Block implements Drawable {
 
     private boolean draw = true;
     public static final int SIZE = 32;
     private Image tex;
-    private String name;
+    private String name, spriteSheet;
     private static final Logger logger = new Logger("Block", Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
@@ -36,8 +32,9 @@ public class Block implements Drawable {
     public static final Block leave = new BlockLeaves(); // ID = 5
     public static final Block obsidian = new BlockObsidian(); // ID = 6
     public static final Block bedrock = new BlockBedRock(); // ID = 7
+    public static final Block cracked = new BlockCracked(); // ID = 8
 
-    public static final Block blockTest = new BlockCracked(); // ID = 8
+    public static final Block blockTest = new BlockCracked(); // ID = 9
 
     public void addBlock(Block block, int id) {
 
@@ -51,7 +48,6 @@ public class Block implements Drawable {
                 logger.log("Intentando usar el id: " + id++, Level.RELEASE_DEBUG);
             }
         }
-
     }
 
     /**
@@ -83,10 +79,20 @@ public class Block implements Drawable {
     Block(int ID, String name) {
         this.slipperiness = 0.6F;
         this.name = name;
-        tex = GraphUtil.getImgFromSheet("res/blocks.def", this.name.toLowerCase() + ".png");
+        if(spriteSheet == null || spriteSheet == ""){
+            spriteSheet = "res/blocks.def";
+        }
+        tex = GraphUtil.getImgFromSheet(spriteSheet, this.name.toLowerCase() + ".png");
 
         addBlock(this, ID);
         this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F);
+    }
+    Block(String name){
+        this(nextFreeID(), name);
+    }
+    Block(String name, String spriteSheet){
+        this(name);
+        this.spriteSheet = spriteSheet;
     }
 
     /**
