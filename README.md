@@ -2,7 +2,7 @@
 
 Este repositorio contiene el código fuente de Macedonia 2D
 
-[Macedonia 2D](/res/main.jpg)
+![Macedonia 2D](/res/main.jpg)
 
 Por favor, ve a la sección de  [problemas](https://github.com/github/Macedonia-2D/issues) para reportar cualquier bug añadir alguna sugerencia. (Por favor, cerciorate de que no este ya añadid@)
 
