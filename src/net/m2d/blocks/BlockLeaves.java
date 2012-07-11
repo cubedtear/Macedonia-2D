@@ -3,7 +3,7 @@ package net.m2d.blocks;
 public class BlockLeaves extends Block {
 
     BlockLeaves() {
-        super(nextFreeID(), "Leaves");
+        super("Leaves");
         this.setHardness(100);
     }
 
