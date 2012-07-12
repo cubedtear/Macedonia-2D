@@ -17,7 +17,7 @@ public class World implements Drawable {
     private static final int BHEIGHT = 15;
     private InstanceBlock[][] blocks;
     private Player player;
-    private Logger logger = new Logger(this.getClass().getName(), Level.ALL);
+    private Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
 
     public World() {
         blocks = new InstanceBlock[BWIDTH][BHEIGHT];
@@ -28,8 +28,8 @@ public class World implements Drawable {
     public InstanceBlock getAt(int x, int y) {
         try {
             return blocks[x][y];
-        } catch (Exception e) {
-            logger.log("Block index out of bounds", Level.DEBUG);
+        } catch (IndexOutOfBoundsException e) {
+            logger.log("Block index out of bounds", Level.ERROR);
             logger.log("X: " + x + ", Y: " + y, Level.ERROR);
         }
         return null;
@@ -38,7 +38,7 @@ public class World implements Drawable {
     public void setAt(int x, int y, int ID) {
         try {
             blocks[x][y].setBlock(Block.blocksList[ID]);
-        } catch (Exception e) {
+        } catch (IndexOutOfBoundsException e) {
             logger.log("Block index out of bounds", Level.ERROR);
             logger.log("X: " + x + ", Y: " + y, Level.ERROR);
         }
@@ -139,10 +139,10 @@ public class World implements Drawable {
                 Rectangle rect = blocks[x][y].getRect();
                 if (block.isCollidable()) {
 
-                    Rectangle up = new Rectangle(rectangle.getX(), rectangle.getY() - 1, rectangle.getWidth(), 1);
-                    Rectangle right = new Rectangle(rectangle.getX() + rectangle.getWidth(), rectangle.getY(), 1, rectangle.getHeight());
-                    Rectangle down = new Rectangle(rectangle.getX(), rectangle.getY() + rectangle.getHeight(), rectangle.getWidth() + 1, 1);
-                    Rectangle left = new Rectangle(rectangle.getX() - 1, rectangle.getY(), 1, rectangle.getHeight() + 1);
+                    Rectangle up = new Rectangle(rectangle.getX(), rectangle.getY() - 2, rectangle.getWidth(), 1);
+                    Rectangle right = new Rectangle(rectangle.getX() + rectangle.getWidth() + 1, rectangle.getY(), 1, rectangle.getHeight());
+                    Rectangle down = new Rectangle(rectangle.getX(), rectangle.getY() + rectangle.getHeight() + 1, rectangle.getWidth(), 1);
+                    Rectangle left = new Rectangle(rectangle.getX() - 2, rectangle.getY(), 1, rectangle.getHeight());
 
                     if (rect.intersects(up)) {
                         ret[0] = Player.UP;

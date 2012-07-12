@@ -50,7 +50,7 @@ public class Game {
     private long lastFrame, lastFPS, fps, fpp;
     private Image background;
 
-    private Logger logger = new Logger("Game", Level.ALL);
+    private Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
 
     private static ToolBar tb;
 
@@ -165,7 +165,8 @@ public class Game {
         world.update(delta);
         updateFPS();
         Display.update();
-        translate_y = world.getPlayer().getY() - 172;
+        translate_y = world.getPlayer().getY() - Display.getHeight() / 2;
+        translate_x = -world.getPlayer().getX() + Display.getWidth() / 2;
         if (frameLimit)
             Display.sync(100);
 

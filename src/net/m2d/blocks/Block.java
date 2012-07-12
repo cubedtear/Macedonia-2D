@@ -20,7 +20,7 @@ public class Block implements Drawable {
     public static final int SIZE = 32;
     private Image tex;
     private String name, spriteSheet;
-    private static final Logger logger = new Logger("Block", Level.ALL);
+    private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
 
@@ -79,7 +79,7 @@ public class Block implements Drawable {
     Block(int ID, String name) {
         this.slipperiness = 0.6F;
         this.name = name;
-        if(spriteSheet == null || spriteSheet == ""){
+        if (spriteSheet == null || spriteSheet == "") {
             spriteSheet = "res/blocks.def";
         }
         tex = GraphUtil.getImgFromSheet(spriteSheet, this.name.toLowerCase() + ".png");
@@ -87,10 +87,12 @@ public class Block implements Drawable {
         addBlock(this, ID);
         this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F);
     }
-    Block(String name){
+
+    Block(String name) {
         this(nextFreeID(), name);
     }
-    Block(String name, String spriteSheet){
+
+    Block(String name, String spriteSheet) {
         this(name);
         this.spriteSheet = spriteSheet;
     }

@@ -13,12 +13,10 @@ public abstract class Entity implements Drawable {
 
     public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
 
-    int width;
-    int height;
+    int width, height;
     int lastDirection = RIGHT;
-    float dx;
-    float dy;
-    protected boolean floor, draw;
+    float dx, dy;
+    protected boolean floor, draw, gravity;
 
     private Image img;
     World world;
@@ -42,6 +40,50 @@ public abstract class Entity implements Drawable {
         this.height = img.getHeight();
         this.x = (int) (x + dx);
         this.y = (int) (y + dy);
+
+        Object[] coll = world.intersects(getRect());
+        int collision = -1;
+        if (coll[0] instanceof Integer) {
+            collision = (Integer) coll[0];
+        } else {
+        }
+        switch (collision) {
+            case DOWN:
+                this.floor = true;
+                break;
+            case UP:
+                if (this.dy < 0) this.dy = 0;
+                break;
+            case LEFT:
+                if (this.dx < 0) this.dx = 0;
+                break;
+            case RIGHT:
+                if (this.dx > 0) this.dx = 0;
+                break;
+        }
+        if (collision != DOWN) {
+            this.floor = false;
+//			if(collision != -1){
+//				logger.log(String.valueOf(collision), Level.DEBUG);
+//			}
+        }
+
+        gravity(delta);
+
+    }
+
+    private void gravity(float delta) {
+
+        if (!floor) {
+            this.dy += 0.05f;
+            gravity = true;
+        } else {
+            if (gravity) {
+                this.dy = 0;
+                gravity = false;
+            }
+            // y -= 0.01;
+        }
 
     }
 

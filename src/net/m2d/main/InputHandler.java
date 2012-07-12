@@ -108,7 +108,8 @@ class InputHandler {
     }
 
     private static void leftPressed() {
-
+        logger.log("X: " + Mouse.getX(), Level.DEBUG);
+        logger.log("Y: " + Mouse.getY(), Level.DEBUG);
     }
 
     private static void leftReleased() {
@@ -135,7 +136,7 @@ class InputHandler {
 
     private static void getBlock() {
         x = Mouse.getX() - Game.translate_x;
-        y = Mouse.getY() + Game.translate_y;
+        y = Mouse.getY() - Game.translate_y;
         state = Mouse.getEventButtonState();
         button = Mouse.getEventButton();
 

@@ -22,7 +22,7 @@ public class Logger {
 
     public void log(String s, Level l) {
         if (l.ordinal() == 0) return;
-        if (l.ordinal() >= this.level.ordinal()) logg(s);
+        if (l.ordinal() <= this.level.ordinal()) logg(s);
     }
 
     private void logg(String s) {

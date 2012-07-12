@@ -1,6 +1,7 @@
 package net.m2d.blocks;
 
 import net.m2d.main.Drawable;
+import net.m2d.main.Game;
 import org.newdawn.slick.geom.Rectangle;
 
 
@@ -63,7 +64,7 @@ public class InstanceBlock implements Drawable {
     }
 
     public void smash() {
-        InstanceBlock breakage = new InstanceBlock(Block.blockTest, x, y);
+        InstanceBlock breakage = new InstanceBlock(Block.cracked, this.x + Game.translate_x, this.y - Game.translate_y);
 
         this.broken++;
         if (broken == block.hardness) {

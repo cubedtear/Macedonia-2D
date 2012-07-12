@@ -13,8 +13,6 @@ import org.newdawn.slick.geom.Rectangle;
  */
 public class Player extends Entity {
 
-    private boolean floor = false;
-    private boolean gravity;
     private Logger logger = new Logger("Player", Level.ALL);
 
     public Player(World world) {
@@ -26,37 +24,7 @@ public class Player extends Entity {
 
     @Override
     public void update(float delta) {
-        Object[] coll = world.intersects(getRect());
-        int collision = -1;
-        if (coll[0] instanceof Integer) {
-            collision = (Integer) coll[0];
-        } else {
-        }
-        switch (collision) {
-
-            case DOWN:
-                this.floor = true;
-                break;
-            case UP:
-                if (this.dy < 0) this.dy = 0;
-                break;
-            case LEFT:
-                if (this.dx < 0) this.dx = 0;
-                break;
-            case RIGHT:
-                if (this.dx > 0) this.dx = 0;
-                break;
-        }
-        if (collision != DOWN) {
-            this.floor = false;
-//			if(collision != -1){
-//				logger.log(String.valueOf(collision), Level.DEBUG);
-//			}
-        }
-
-        gravity(delta);
         super.update(delta);
-
     }
 
     @Override
@@ -65,23 +33,8 @@ public class Player extends Entity {
     }
 
     public void reset() {
-        setX(-Game.translate_x);
+        setX(-Game.translate_x + 10);
         setY(0);
-    }
-
-    private void gravity(float delta) {
-
-        if (!floor) {
-            this.dy += 0.05f;
-            gravity = true;
-        } else {
-            if (gravity) {
-                this.dy = 0;
-                gravity = false;
-            }
-            // y -= 0.01;
-        }
-
     }
 
     public void move(int direccion) {
