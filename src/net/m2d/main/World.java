@@ -131,8 +131,8 @@ public class World implements Drawable {
         }
     }
 
-    public Object[] intersects(Rectangle rectangle) {
-        Object[] ret = new Object[2];
+    public InstanceBlock[] intersects(Rectangle rectangle) {
+        InstanceBlock[] ret = new InstanceBlock[4];
         for (int x = 0; x < BWIDTH; x++)
             for (int y = 0; y < BHEIGHT; y++) {
                 Block block = blocks[x][y].getBlock();
@@ -145,29 +145,19 @@ public class World implements Drawable {
                     Rectangle left = new Rectangle(rectangle.getX() - 2, rectangle.getY(), 1, rectangle.getHeight());
 
                     if (rect.intersects(up)) {
-                        ret[0] = Player.UP;
-                        ret[1] = blocks[x][y];
-                        return ret;
+                        ret[Player.UP] = blocks[x][y];
                     }
                     if (rect.intersects(right)) {
-                        ret[0] = Player.RIGHT;
-                        ret[1] = blocks[x][y];
-                        return ret;
+                        ret[Player.RIGHT] = blocks[x][y];
                     }
                     if (rect.intersects(down)) {
-                        ret[0] = Player.DOWN;
-                        ret[1] = blocks[x][y];
-                        return ret;
+                        ret[Player.DOWN] = blocks[x][y];
                     }
                     if (rect.intersects(left)) {
-                        ret[0] = Player.LEFT;
-                        ret[1] = blocks[x][y];
-                        return ret;
+                        ret[Player.LEFT] = blocks[x][y];
                     }
                 }
             }
-        ret[0] = -1;
-        ret[1] = null;
         return ret;
     }
 

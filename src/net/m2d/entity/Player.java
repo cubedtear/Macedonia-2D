@@ -49,7 +49,7 @@ public class Player extends Entity {
                 break;
             case UP:
                 if (floor)
-                    this.dy -= 0.75f;
+                    this.dy -= 2f;
                 break;
         }
     }

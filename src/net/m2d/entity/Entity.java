@@ -1,5 +1,6 @@
 package net.m2d.entity;
 
+import net.m2d.blocks.InstanceBlock;
 import net.m2d.main.Drawable;
 import net.m2d.main.World;
 import org.newdawn.slick.Image;
@@ -38,34 +39,23 @@ public abstract class Entity implements Drawable {
     void update(float delta) {
         this.width = img.getWidth();
         this.height = img.getHeight();
-        this.x = (int) (x + dx);
-        this.y = (int) (y + dy);
+        this.x += dx;
+        this.y += dy;
 
-        Object[] coll = world.intersects(getRect());
-        int collision = -1;
-        if (coll[0] instanceof Integer) {
-            collision = (Integer) coll[0];
+        InstanceBlock[] coll = world.intersects(getRect());
+        if (coll[UP] != null) {
+            if (this.dy < 0) this.dy = 0;
+        }
+        if (coll[DOWN] != null) {
+            this.floor = true;
         } else {
-        }
-        switch (collision) {
-            case DOWN:
-                this.floor = true;
-                break;
-            case UP:
-                if (this.dy < 0) this.dy = 0;
-                break;
-            case LEFT:
-                if (this.dx < 0) this.dx = 0;
-                break;
-            case RIGHT:
-                if (this.dx > 0) this.dx = 0;
-                break;
-        }
-        if (collision != DOWN) {
             this.floor = false;
-//			if(collision != -1){
-//				logger.log(String.valueOf(collision), Level.DEBUG);
-//			}
+        }
+        if (coll[RIGHT] != null) {
+            if (this.dx > 0) this.dx = 0;
+        }
+        if (coll[LEFT] != null) {
+            if (this.dx < 0) this.dx = 0;
         }
 
         gravity(delta);
@@ -89,10 +79,6 @@ public abstract class Entity implements Drawable {
 
     Rectangle getRect() {
         return new Rectangle(getX(), getY(), width, height);
-    }
-
-    public boolean intersects(Rectangle rect) {
-        return rect.intersects(getRect());
     }
 
     public void setLastDir(int dir) {

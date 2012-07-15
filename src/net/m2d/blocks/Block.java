@@ -6,7 +6,10 @@ import net.m2d.main.Drawable;
 import net.m2d.main.Logger;
 import net.m2d.main.Logger.Level;
 import net.m2d.main.World;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.PackedSpriteSheet;
+import org.newdawn.slick.SlickException;
 
 import java.util.Random;
 
@@ -20,7 +23,7 @@ public class Block implements Drawable {
     public static final int SIZE = 32;
     private Image tex;
     private String name, spriteSheet;
-    private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+    private static final Logger logger = new Logger("Block", Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
 
@@ -35,6 +38,7 @@ public class Block implements Drawable {
     public static final Block cracked = new BlockCracked(); // ID = 8
 
     public static final Block blockTest = new BlockCracked(); // ID = 9
+    private static PackedSpriteSheet defaultSpriteSheet;
 
     public void addBlock(Block block, int id) {
 
@@ -76,25 +80,38 @@ public class Block implements Drawable {
      */
     private float slipperiness;
 
-    Block(int ID, String name) {
+    public static void init() {
+        try {
+            defaultSpriteSheet = new PackedSpriteSheet("res/blocks.def", Color.magenta);
+        } catch (SlickException e) {
+            logger.log("Error al leer el PackedSpriteSheet:", Level.ERROR);
+            logger.log("res/block.def", Level.ERROR);
+            e.printStackTrace();
+            System.exit(0);
+        }
+    }
+
+    Block(int ID, String name, String spriteSheet) {
+        init();
         this.slipperiness = 0.6F;
         this.name = name;
         if (spriteSheet == null || spriteSheet == "") {
-            spriteSheet = "res/blocks.def";
+            tex = defaultSpriteSheet.getSprite(this.name.toLowerCase() + ".png");
+        } else {
+            tex = GraphUtil.getImgFromSheet(spriteSheet, this.name.toLowerCase() + ".png");
         }
-        tex = GraphUtil.getImgFromSheet(spriteSheet, this.name.toLowerCase() + ".png");
+
 
         addBlock(this, ID);
         this.setBlockBounds(0.0F, 0.0F, 1.0F, 1.0F);
     }
 
     Block(String name) {
-        this(nextFreeID(), name);
+        this(name, null);
     }
 
     Block(String name, String spriteSheet) {
-        this(name);
-        this.spriteSheet = spriteSheet;
+        this(nextFreeID(), name, spriteSheet);
     }
 
     /**
@@ -234,3 +251,4 @@ public class Block implements Drawable {
     }
 
 }
+

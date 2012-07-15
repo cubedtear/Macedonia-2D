@@ -1,15 +1,20 @@
 package net.m2d.main;
 
 import net.m2d.GUI.ToolBar;
+import net.m2d.blocks.Block;
+import net.m2d.blocks.BlockOut;
 import net.m2d.graphics.Image;
 import net.m2d.main.Logger.Level;
 import org.lwjgl.LWJGLException;
+import org.lwjgl.input.Cursor;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.newdawn.slick.opengl.CursorLoader;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -55,7 +60,6 @@ public class Game {
     private static ToolBar tb;
 
     public Game() {
-
         initOpenGL();
         inicializar();
         mainLoop();
@@ -87,15 +91,22 @@ public class Game {
      * Initialize the game objects as well as the textures, while showing a square (for the time being)
      */
     private void inicializar() {
+        new BlockOut();
         logger.log("Iniciando...", Level.COMMENTS);
-
+        Block.init();
         Texture texture = null;
+        try {
+            Cursor c = CursorLoader.get().getCursor("/res/cursor.png", 0, 0);
+            Mouse.setNativeCursor(c);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         try {
             texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("/res/sprites/blocks/dirt.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         if (texture != null) {
             texture.bind();
         }

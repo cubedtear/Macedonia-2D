@@ -117,11 +117,11 @@ class InputHandler {
     }
 
     private static void rightPressed() {
-        logger.log("Clicked at:", Level.DEBUG);
-        logger.log("X: " + x + " Y: " + y, Level.DEBUG);
-        logger.log("Block (" + blockx + ", " + blocky + ") "
-                + block.getBlock().getName() + "(" + block.getBlock().id + ")", Level.DEBUG);
-        logger.log("Solid: " + block.getBlock().isCollidable(), Level.DEBUG);
+//        logger.log("Clicked at:", Level.DEBUG);
+//        logger.log("X: " + x + " Y: " + y, Level.DEBUG);
+//        logger.log("Block (" + blockx + ", " + blocky + ") "
+//                + block.getBlock().getName() + "(" + block.getBlock().id + ")", Level.DEBUG);
+//        logger.log("Solid: " + block.getBlock().isCollidable(), Level.DEBUG);
 
         if (Block.blocksList[block.getBlock().id + 1] != null) {
             world.setAt(blockx, blocky, block.getBlock().id + 1);
