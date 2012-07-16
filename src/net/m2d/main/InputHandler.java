@@ -16,14 +16,13 @@ import org.lwjgl.opengl.Display;
 class InputHandler {
 
     private static boolean[] keys = new boolean[256];
-    private static boolean state;
     private static final int LEFT = 0, RIGHT = 1;
-    private static final boolean PRESS = true, RELEASE = false;
     private static int x, y, blockx, blocky, button;
 
     private static World world;
     private static InstanceBlock block;
-    private static Logger logger = new Logger("Input", Level.ALL);
+    private static final Logger logger = new Logger("Input", Level.ALL);
+    private static boolean pressed;
 
     public static void mouse(World world) {
 
@@ -49,17 +48,17 @@ class InputHandler {
                 Game.getToolBar().setDTool(1);
             }
 
-            if (button == LEFT && state == PRESS) {
+            if (button == LEFT && pressed) {
                 leftPressed();
             }
-            if (button == LEFT && state == RELEASE) {
+            if (button == LEFT && !pressed) {
                 leftReleased();
 
             }
-            if (button == RIGHT && state == PRESS) {
+            if (button == RIGHT && pressed) {
                 rightPressed();
             }
-            if (button == RIGHT && state == RELEASE) {
+            if (button == RIGHT && !pressed) {
                 rightReleased();
             }
 
@@ -145,7 +144,7 @@ class InputHandler {
     private static void getBlock() {
         x = Mouse.getX() - Game.translate_x;
         y = Mouse.getY() - Game.translate_y;
-        state = Mouse.getEventButtonState();
+        pressed = Mouse.getEventButtonState();
         button = Mouse.getEventButton();
 
         blockx = x / Block.SIZE;

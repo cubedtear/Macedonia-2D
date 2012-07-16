@@ -2,8 +2,6 @@ package net.m2d.entity;
 
 import net.m2d.graphics.GraphUtil;
 import net.m2d.main.Game;
-import net.m2d.main.Logger;
-import net.m2d.main.Logger.Level;
 import net.m2d.main.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
@@ -12,9 +10,6 @@ import org.newdawn.slick.geom.Rectangle;
  * @author Aritzh
  */
 public class Player extends Entity {
-
-    private Logger logger = new Logger("Player", Level.ALL);
-    private static final int X_VEL = 1, Y_VEL = 1;
 
     public Player(World world) {
         super(world);

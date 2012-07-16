@@ -40,7 +40,7 @@ public class Game {
      * The movements on the x and y axes
      */
     public static int translate_x = 0, translate_y = 0;
-    public static float delta;
+    private static float delta;
 
     private World world;
     private UnicodeFont font;
@@ -56,7 +56,7 @@ public class Game {
     private long lastFrame, lastFPS, fps, fpp;
     private Image background;
 
-    private Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+    private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
 
     private static ToolBar tb;
 
@@ -235,13 +235,13 @@ public class Game {
     }
 
     /**
-     * @return The amount of time has passed since last frame
+     * Updates the variable "delta" with the amount of time has passed since last frame
      */
     void getDelta() {
         long time = (System.nanoTime() / 1000000);
         float delta = time - lastFrame;
         lastFrame = time;
-        this.delta = delta;
+        Game.delta = delta;
     }
 
     /**

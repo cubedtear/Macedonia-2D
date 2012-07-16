@@ -15,7 +15,7 @@ public class ToolBar implements Drawable {
 
     private int currTool;
     private Stack[] tools;
-    private Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+    private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
     private Image barTex, selTex;
     private PackedSpriteSheet sh;
 

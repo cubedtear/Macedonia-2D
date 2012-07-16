@@ -17,13 +17,13 @@ public abstract class Entity implements Drawable {
     int width, height;
     int lastDirection = RIGHT;
     float dx, dy;
-    protected boolean floor, draw, gravity;
+    protected boolean floor, gravity;
 
     private Image img;
     World world;
 
     private int x, y;
-    private static final int X_VEL = 1, Y_VEL = 1;
+    private static final int X_VEL = 1, Y_VEL = 2;
 
     Entity(World world) {
         this.world = world;
@@ -108,7 +108,7 @@ public abstract class Entity implements Drawable {
         return y;
     }
 
-    public void move(int direccion) {
+    void move(int direccion) {
         switch (direccion) {
             case LEFT:
                 this.dx = 0 - X_VEL;
@@ -120,7 +120,7 @@ public abstract class Entity implements Drawable {
                 break;
             case UP:
                 if (floor)
-                    this.dy = -2f;
+                    this.dy = -Y_VEL;
                 break;
             case OTHER:
                 this.dx = 0;

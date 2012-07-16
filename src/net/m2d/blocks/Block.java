@@ -22,7 +22,7 @@ public class Block implements Drawable {
     private boolean draw = true;
     public static final int SIZE = 32;
     private Image tex;
-    private String name, spriteSheet;
+    private String name;
     protected static final Logger logger = new Logger("Block", Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
@@ -91,11 +91,11 @@ public class Block implements Drawable {
         }
     }
 
-    Block(int ID, String name, String spriteSheet) {
+    private Block(int ID, String name, String spriteSheet) {
         init();
         this.slipperiness = 0.6F;
         this.name = name;
-        if (spriteSheet == null || spriteSheet == "") {
+        if (spriteSheet == null || spriteSheet.equals("")) {
             tex = defaultSpriteSheet.getSprite(this.name.toLowerCase() + ".png");
         } else {
             tex = GraphUtil.getImgFromSheet(spriteSheet, this.name.toLowerCase() + ".png");
@@ -238,7 +238,7 @@ public class Block implements Drawable {
     }
 
 
-    static int nextFreeID() {
+    public static int nextFreeID() {
         int x = 0;
         for (Block b : blocksList) {
             if (b == null) {

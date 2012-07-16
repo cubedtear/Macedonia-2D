@@ -17,7 +17,7 @@ public class World implements Drawable {
     private static final int BHEIGHT = 15;
     private InstanceBlock[][] blocks;
     private Player player;
-    private Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+    private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
 
     public World() {
         blocks = new InstanceBlock[BWIDTH][BHEIGHT];
