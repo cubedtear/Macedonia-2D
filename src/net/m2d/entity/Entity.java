@@ -12,7 +12,7 @@ import org.newdawn.slick.geom.Rectangle;
 
 public abstract class Entity implements Drawable {
 
-    public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3;
+    public static final int UP = 0, RIGHT = 1, DOWN = 2, LEFT = 3, OTHER = 4;
 
     int width, height;
     int lastDirection = RIGHT;
@@ -23,6 +23,7 @@ public abstract class Entity implements Drawable {
     World world;
 
     private int x, y;
+    private static final int X_VEL = 1, Y_VEL = 1;
 
     Entity(World world) {
         this.world = world;
@@ -39,23 +40,28 @@ public abstract class Entity implements Drawable {
     void update(float delta) {
         this.width = img.getWidth();
         this.height = img.getHeight();
-        this.x += dx;
-        this.y += dy;
+        delta /= 5;
+        this.x += dx * delta;
+        this.y += dy * delta;
 
         InstanceBlock[] coll = world.intersects(getRect());
         if (coll[UP] != null) {
             if (this.dy < 0) this.dy = 0;
+            coll[UP].getBlock().playerCollided();
         }
         if (coll[DOWN] != null) {
             this.floor = true;
+            coll[DOWN].getBlock().playerCollided();
         } else {
             this.floor = false;
         }
         if (coll[RIGHT] != null) {
             if (this.dx > 0) this.dx = 0;
+            coll[RIGHT].getBlock().playerCollided();
         }
         if (coll[LEFT] != null) {
             if (this.dx < 0) this.dx = 0;
+            coll[LEFT].getBlock().playerCollided();
         }
 
         gravity(delta);
@@ -102,8 +108,29 @@ public abstract class Entity implements Drawable {
         return y;
     }
 
+    public void move(int direccion) {
+        switch (direccion) {
+            case LEFT:
+                this.dx = 0 - X_VEL;
+                setLastDir(LEFT);
+                break;
+            case RIGHT:
+                this.dx = X_VEL;
+                setLastDir(RIGHT);
+                break;
+            case UP:
+                if (floor)
+                    this.dy = -2f;
+                break;
+            case OTHER:
+                this.dx = 0;
+
+        }
+    }
+
     public void setY(int y) {
         this.y = y;
     }
+
 
 }

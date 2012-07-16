@@ -94,35 +94,43 @@ class InputHandler {
         if (keys[Keyboard.KEY_W])
             world.getPlayer().move(Player.UP);
 
-        if (keys[Keyboard.KEY_A])
+
+        if (keys[Keyboard.KEY_A]) {
             if (Game.state == State.GAME) {
                 world.getPlayer().move(Player.LEFT);
                 Game.translate_x++;
             }
-        if (keys[Keyboard.KEY_D])
+        } else {
+            world.getPlayer().move(Player.OTHER);
+        }
+        if (keys[Keyboard.KEY_D]) {
             if (Game.state == State.GAME) {
                 world.getPlayer().move(Player.RIGHT);
                 Game.translate_x--;
             }
+        } else {
+            world.getPlayer().move(Player.OTHER);
+        }
         return keys;
     }
 
     private static void leftPressed() {
         logger.log("X: " + Mouse.getX(), Level.DEBUG);
         logger.log("Y: " + Mouse.getY(), Level.DEBUG);
+        block.getBlock().leftPressed();
     }
 
     private static void leftReleased() {
-
+        block.getBlock().leftReleased();
     }
 
     private static void rightPressed() {
+        block.getBlock().rightPressed();
 //        logger.log("Clicked at:", Level.DEBUG);
 //        logger.log("X: " + x + " Y: " + y, Level.DEBUG);
 //        logger.log("Block (" + blockx + ", " + blocky + ") "
 //                + block.getBlock().getName() + "(" + block.getBlock().id + ")", Level.DEBUG);
 //        logger.log("Solid: " + block.getBlock().isCollidable(), Level.DEBUG);
-
         if (Block.blocksList[block.getBlock().id + 1] != null) {
             world.setAt(blockx, blocky, block.getBlock().id + 1);
         } else {
@@ -131,7 +139,7 @@ class InputHandler {
     }
 
     private static void rightReleased() {
-
+        block.getBlock().rightReleased();
     }
 
     private static void getBlock() {

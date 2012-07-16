@@ -23,7 +23,7 @@ public class Block implements Drawable {
     public static final int SIZE = 32;
     private Image tex;
     private String name, spriteSheet;
-    private static final Logger logger = new Logger("Block", Level.ALL);
+    protected static final Logger logger = new Logger("Block", Level.ALL);
 
     public static final Block[] blocksList = new Block[4096];
 
@@ -250,5 +250,19 @@ public class Block implements Drawable {
         return -1;
     }
 
+    public void leftPressed() {
+    }
+
+    public void rightPressed() {
+    }
+
+    public void leftReleased() {
+    }
+
+    public void rightReleased() {
+    }
+
+    public void playerCollided() {
+    }
 }
 

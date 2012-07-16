@@ -40,6 +40,7 @@ public class Game {
      * The movements on the x and y axes
      */
     public static int translate_x = 0, translate_y = 0;
+    public static float delta;
 
     private World world;
     private UnicodeFont font;
@@ -160,6 +161,7 @@ public class Game {
             handleInput();
             updateDisplay();
             draw();
+            logger.log("Delta: " + delta, Level.DEBUG);
         }
         logger.log("Saliendo...", Level.COMMENTS);
         Display.destroy();
@@ -172,7 +174,7 @@ public class Game {
     }
 
     private void updateDisplay() {
-        float delta = getDelta();
+        getDelta();
         world.update(delta);
         updateFPS();
         Display.update();
@@ -235,11 +237,11 @@ public class Game {
     /**
      * @return The amount of time has passed since last frame
      */
-    float getDelta() {
+    void getDelta() {
         long time = (System.nanoTime() / 1000000);
         float delta = time - lastFrame;
         lastFrame = time;
-        return delta;
+        this.delta = delta;
     }
 
     /**

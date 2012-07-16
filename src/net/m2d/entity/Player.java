@@ -14,6 +14,7 @@ import org.newdawn.slick.geom.Rectangle;
 public class Player extends Entity {
 
     private Logger logger = new Logger("Player", Level.ALL);
+    private static final int X_VEL = 1, Y_VEL = 1;
 
     public Player(World world) {
         super(world);
@@ -38,20 +39,8 @@ public class Player extends Entity {
     }
 
     public void move(int direccion) {
-        switch (direccion) {
-            case LEFT:
-                this.setX(this.getX() - 1);
-                setLastDir(LEFT);
-                break;
-            case RIGHT:
-                this.setX(this.getX() + 1);
-                setLastDir(RIGHT);
-                break;
-            case UP:
-                if (floor)
-                    this.dy -= 2f;
-                break;
-        }
+        super.move(direccion);
+
     }
 
     public int getDirection() {
