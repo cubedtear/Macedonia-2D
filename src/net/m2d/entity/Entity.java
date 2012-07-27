@@ -2,6 +2,8 @@ package net.m2d.entity;
 
 import net.m2d.blocks.InstanceBlock;
 import net.m2d.main.Drawable;
+import net.m2d.main.Logger;
+import net.m2d.main.Logger.Level;
 import net.m2d.main.World;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
@@ -25,6 +27,8 @@ public abstract class Entity implements Drawable {
     private int x, y;
     private static final int X_VEL = 1, Y_VEL = 2;
 
+    protected Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+
     Entity(World world) {
         this.world = world;
     }
@@ -41,6 +45,9 @@ public abstract class Entity implements Drawable {
         this.width = img.getWidth();
         this.height = img.getHeight();
         delta /= 5;
+        if (dx < 0) {
+            logger.log("Es menor!", Level.DEBUG);
+        }
         this.x += dx * delta;
         this.y += dy * delta;
 
@@ -111,7 +118,7 @@ public abstract class Entity implements Drawable {
     void move(int direccion) {
         switch (direccion) {
             case LEFT:
-                this.dx = 0 - X_VEL;
+                this.dx = -1;
                 setLastDir(LEFT);
                 break;
             case RIGHT:
@@ -123,7 +130,7 @@ public abstract class Entity implements Drawable {
                     this.dy = -Y_VEL;
                 break;
             case OTHER:
-                this.dx = 0;
+                //this.dx = 0;
 
         }
     }

@@ -1,5 +1,6 @@
 package net.m2d.entity;
 
+import net.m2d.GUI.ToolBar;
 import net.m2d.graphics.GraphUtil;
 import net.m2d.main.Game;
 import net.m2d.main.World;
@@ -10,9 +11,12 @@ import org.newdawn.slick.geom.Rectangle;
  * @author Aritzh
  */
 public class Player extends Entity {
+    private ToolBar toolBar;
+
 
     public Player(World world) {
         super(world);
+        this.toolBar = new ToolBar();
 
         Image img = GraphUtil.getImgFromSheet("res/player.def", "plStop.png");
         super.setImg(img);
@@ -40,5 +44,9 @@ public class Player extends Entity {
 
     public int getDirection() {
         return lastDirection;
+    }
+
+    public ToolBar getToolBar() {
+        return toolBar;
     }
 }

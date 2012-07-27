@@ -24,11 +24,13 @@ public class ToolBar implements Drawable {
         if (barTex != null) {
             barTex.draw((Game.WIDTH / 2) - (barTex.getWidth() / 2), Game.HEIGHT - barTex.getHeight());
             selTex.draw(((Game.WIDTH / 2) - (barTex.getWidth() / 2)) - 1 + currTool * 20, Game.HEIGHT - selTex.getHeight());
-            int x = 0;
-            for (Stack s : tools) {
+        }
+        int x = 0;
+        for (Stack s : tools) {
+            if (s.getId() != Block.air.id) {
                 s.draw((Game.WIDTH / 2) - (barTex.getWidth() / 2) + 3 + x * 20, Game.HEIGHT - barTex.getHeight() + (s.selected ? 2 : 3));
-                x++;
             }
+            x++;
         }
     }
 
@@ -73,6 +75,17 @@ public class ToolBar implements Drawable {
     }
 
     public void setCurrTool(Stack stack) {
+        if (stack.getAmount() <= 0) {
+            stack = new Stack(0, 0);
+        }
         tools[currTool] = stack;
+    }
+
+    public int getCurrToolPosition() {
+        return currTool;
+    }
+
+    public void setCurrToolPosition(int currTool) {
+        this.currTool = currTool;
     }
 }

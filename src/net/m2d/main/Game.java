@@ -1,6 +1,5 @@
 package net.m2d.main;
 
-import net.m2d.GUI.ToolBar;
 import net.m2d.blocks.Block;
 import net.m2d.blocks.BlockOut;
 import net.m2d.graphics.Image;
@@ -43,7 +42,7 @@ public class Game {
     private static float delta;
 
     private World world;
-    private UnicodeFont font;
+    private static UnicodeFont font;
 
     /**
      * Array of objects that should be drawn
@@ -57,8 +56,6 @@ public class Game {
     private Image background;
 
     private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
-
-    private static ToolBar tb;
 
     public Game() {
         initOpenGL();
@@ -92,7 +89,7 @@ public class Game {
      * Initialize the game objects as well as the textures, while showing a square (for the time being)
      */
     private void inicializar() {
-        new BlockOut();
+
         logger.log("Iniciando...", Level.COMMENTS);
         Block.init();
         Texture texture = null;
@@ -130,13 +127,11 @@ public class Game {
         lastFPS = (System.nanoTime() / 1000000);
 
         world = new World();
-        tb = new ToolBar();
-
         drawGame[1] = world;
-        drawHUD[0] = tb;
+        drawHUD[0] = world.getPlayer().getToolBar();
         background = new Image("res/background.png");
         drawMenu[0] = new Image("res/menu_back.png");
-
+        new BlockOut();
         initFonts();
     }
 
@@ -161,7 +156,6 @@ public class Game {
             handleInput();
             updateDisplay();
             draw();
-            logger.log("Delta: " + delta, Level.DEBUG);
         }
         logger.log("Saliendo...", Level.COMMENTS);
         Display.destroy();
@@ -183,10 +177,6 @@ public class Game {
         if (frameLimit)
             Display.sync(100);
 
-    }
-
-    public static ToolBar getToolBar() {
-        return tb;
     }
 
     private void draw() {
@@ -259,6 +249,10 @@ public class Game {
 
     public enum State {
         MENU, GAME
+    }
+
+    public static UnicodeFont getFont() {
+        return font;
     }
 
 }

@@ -1,5 +1,7 @@
 package net.m2d.main;
 
+import net.m2d.GUI.Stack;
+import net.m2d.GUI.ToolBar;
 import net.m2d.blocks.Block;
 import net.m2d.blocks.InstanceBlock;
 import net.m2d.entity.Player;
@@ -7,7 +9,6 @@ import net.m2d.main.Game.State;
 import net.m2d.main.Logger.Level;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
 
 
 /**
@@ -17,7 +18,7 @@ class InputHandler {
 
     private static boolean[] keys = new boolean[256];
     private static final int LEFT = 0, RIGHT = 1;
-    private static int x, y, blockx, blocky, button;
+    private static int blockx, blocky, button;
 
     private static World world;
     private static InstanceBlock block;
@@ -42,10 +43,10 @@ class InputHandler {
 
             if (Mouse.getEventDWheel() > 0) {
                 // Rueda arriba
-                Game.getToolBar().setDTool(-1);
+                world.getPlayer().getToolBar().setDTool(-1);
             } else if (Mouse.getEventDWheel() < 0) {
                 // Rueda abajo
-                Game.getToolBar().setDTool(1);
+                world.getPlayer().getToolBar().setDTool(1);
             }
 
             if (button == LEFT && pressed) {
@@ -71,9 +72,8 @@ class InputHandler {
 
             keys[Keyboard.getEventKey()] = Keyboard.getEventKeyState();
 
-
             if (keys[Keyboard.KEY_R]) {
-                Display.sync(60);
+                //Display.sync(60);
                 world.getPlayer().reset();
             }
 
@@ -92,12 +92,13 @@ class InputHandler {
         }
         if (keys[Keyboard.KEY_W])
             world.getPlayer().move(Player.UP);
-
+        if (keys[Keyboard.KEY_M]) {
+            logger.log("CurrTool Amount" + world.getPlayer().getToolBar().getCurrTool().getAmount(), Level.DEBUG);
+        }
 
         if (keys[Keyboard.KEY_A]) {
             if (Game.state == State.GAME) {
                 world.getPlayer().move(Player.LEFT);
-                Game.translate_x++;
             }
         } else {
             world.getPlayer().move(Player.OTHER);
@@ -105,7 +106,6 @@ class InputHandler {
         if (keys[Keyboard.KEY_D]) {
             if (Game.state == State.GAME) {
                 world.getPlayer().move(Player.RIGHT);
-                Game.translate_x--;
             }
         } else {
             world.getPlayer().move(Player.OTHER);
@@ -125,15 +125,19 @@ class InputHandler {
 
     private static void rightPressed() {
         block.getBlock().rightPressed();
-//        logger.log("Clicked at:", Level.DEBUG);
-//        logger.log("X: " + x + " Y: " + y, Level.DEBUG);
-//        logger.log("Block (" + blockx + ", " + blocky + ") "
-//                + block.getBlock().getName() + "(" + block.getBlock().id + ")", Level.DEBUG);
-//        logger.log("Solid: " + block.getBlock().isCollidable(), Level.DEBUG);
-        if (Block.blocksList[block.getBlock().id + 1] != null) {
-            world.setAt(blockx, blocky, block.getBlock().id + 1);
-        } else {
-            world.setAt(blockx, blocky, 0);
+
+//        if (Block.blocksList[block.getBlock().id + 1] != null) {
+//            world.setAt(blockx, blocky, block.getBlock().id + 1);
+//        } else {
+//            world.setAt(blockx, blocky, 0);
+//        }
+
+        if (block.getBlock() == Block.air) {
+            ToolBar tb = world.getPlayer().getToolBar();
+            if (tb.getCurrTool().getAmount() > 0) {
+                block.setBlock(Block.blocksList[tb.getCurrTool().getId()]);
+                tb.setCurrTool(new Stack(tb.getCurrTool().getId(), tb.getCurrTool().getAmount() - 1));
+            }
         }
     }
 
@@ -142,8 +146,8 @@ class InputHandler {
     }
 
     private static void getBlock() {
-        x = Mouse.getX() - Game.translate_x;
-        y = Mouse.getY() - Game.translate_y;
+        int x = Mouse.getX() - Game.translate_x;
+        int y = Mouse.getY() - Game.translate_y;
         pressed = Mouse.getEventButtonState();
         button = Mouse.getEventButton();
 
@@ -152,7 +156,7 @@ class InputHandler {
         block = world.getAt(blockx, blocky);
 
         if (block == null) {
-            block = new InstanceBlock(Block.air, -100, -100);
+            block = new InstanceBlock(Block.air, -100, -100, world);
         }
     }
 

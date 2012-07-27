@@ -18,6 +18,7 @@ public class World implements Drawable {
     private InstanceBlock[][] blocks;
     private Player player;
     private final Logger logger = new Logger(this.getClass().getSimpleName(), Level.ALL);
+    private int lastErrorX, lastErrorY;
 
     public World() {
         blocks = new InstanceBlock[BWIDTH][BHEIGHT];
@@ -29,8 +30,8 @@ public class World implements Drawable {
         try {
             return blocks[x][y];
         } catch (IndexOutOfBoundsException e) {
-            logger.log("Block index out of bounds", Level.ERROR);
-            logger.log("X: " + x + ", Y: " + y, Level.ERROR);
+//                logger.log("Block index out of bounds", Level.ERROR);
+//                logger.log("X: " + x + ", Y: " + y, Level.ERROR);
         }
         return null;
     }
@@ -39,8 +40,8 @@ public class World implements Drawable {
         try {
             blocks[x][y].setBlock(Block.blocksList[ID]);
         } catch (IndexOutOfBoundsException e) {
-            logger.log("Block index out of bounds", Level.ERROR);
-            logger.log("X: " + x + ", Y: " + y, Level.ERROR);
+//                logger.log("Block index out of bounds", Level.ERROR);
+//                logger.log("X: " + x + ", Y: " + y, Level.ERROR);
         }
     }
 
@@ -95,7 +96,7 @@ public class World implements Drawable {
             for (String fila : partes[0].split(";;")) {
                 int x = 0;
                 for (String id : fila.split(";")) {
-                    blocks[x][y] = new InstanceBlock(Block.blocksList[Integer.valueOf(id)], x * Block.SIZE, y * Block.SIZE);
+                    blocks[x][y] = new InstanceBlock(Block.blocksList[Integer.valueOf(id)], x * Block.SIZE, y * Block.SIZE, this);
                     x++;
                 }
                 y++;
@@ -103,7 +104,7 @@ public class World implements Drawable {
         } catch (Exception e) {
             for (int x = 0; x < BWIDTH; x++)
                 for (int y = 0; y < BHEIGHT; y++)
-                    blocks[x][y] = new InstanceBlock(Block.stone, x * Block.SIZE, y * Block.SIZE);
+                    blocks[x][y] = new InstanceBlock(Block.stone, x * Block.SIZE, y * Block.SIZE, this);
         }
         if (player != null) {
             player.setX(px);
@@ -113,7 +114,7 @@ public class World implements Drawable {
         for (int x = 0; x < BWIDTH; x++) {
             for (int y = 0; y < BHEIGHT; y++) {
                 if (blocks[x][y] == null) {
-                    blocks[x][y] = new InstanceBlock(Block.stone, x * Block.SIZE, y * Block.SIZE);
+                    blocks[x][y] = new InstanceBlock(Block.stone, x * Block.SIZE, y * Block.SIZE, this);
                 }
             }
         }
