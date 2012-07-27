@@ -19,10 +19,7 @@
         <fileset dir="${lib.dir}" includes="*.jar"/>
     </path>
 
-    <target name="init" depends="clean">
-        <echo>Creating temporary folders...</echo>
-        <mkdir dir="${build.dir}"/>
-        <antcall target="build"/>
+    <target name="init" depends="build">
     </target>
 
     <target name="clean" description="Clean up">
@@ -30,8 +27,9 @@
         <delete dir="${build.dir}"/>
     </target>
 
-
-    <target name="build" description="Build project">
+    <target name="build" description="Build project" depends="clean">
+        <echo>Creating temporary folders...</echo>
+        <mkdir dir="${build.dir}"/>
         <echo>Copying files to build folder...</echo>
         <javac srcdir="${src.dir}"
                destdir="${build.dir}"
@@ -45,4 +43,24 @@
         <exec executable="sprites.bat"/>
         <jar jarfile="${out.jar}" basedir="${build.dir}" includes="**" manifest="${manifest.file}"/>
     </target>
+
+
+    <target name="initJenkins" depends="buildJenkins"/>
+
+    <target name="buildJenkins" depends="clean">
+        <echo>Creating temporary folders...</echo>
+        <mkdir dir="${build.dir}"/>
+        <echo>Copying files to build folder...</echo>
+        <javac srcdir="${src.dir}"
+               destdir="${build.dir}"
+               debug="${debug}"
+               optimize="${optimize}"
+               deprecation="${deprecation}"
+               target="${target.vm}"
+               includeantruntime="false">
+            <classpath refid="classpath"/>
+        </javac>
+        <jar jarfile="${out.jar}" basedir="${build.dir}" includes="**" manifest="${manifest.file}"/>
+    </target>
+
 </project>
