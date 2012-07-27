@@ -45,7 +45,7 @@
     </target>
 
 
-    <target name="initJenkins" depends="buildJenkins"/>
+<!--    <target name="initJenkins" depends="buildJenkins"/>
 
     <target name="buildJenkins" depends="clean">
         <echo>Creating temporary folders...</echo>
@@ -61,6 +61,6 @@
             <classpath refid="classpath"/>
         </javac>
         <jar jarfile="${out.jar}" basedir="${build.dir}" includes="**" manifest="${manifest.file}"/>
-    </target>
+    </target>-->
 
 </project>
