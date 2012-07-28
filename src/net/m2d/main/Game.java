@@ -92,22 +92,22 @@ public class Game {
 
         logger.log("Iniciando...", Level.COMMENTS);
         Block.init();
-        Texture texture = null;
-        try {
-            Cursor c = CursorLoader.get().getCursor("/res/cursor.png", 0, 0);
-            Mouse.setNativeCursor(c);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        try {
-            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("/res/sprites/blocks/dirt.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        if (texture != null) {
-            texture.bind();
-        }
+//        Texture texture = null;
+//        try {
+//            Cursor c = CursorLoader.get().getCursor("/res/cursor.png", 0, 0);
+//            Mouse.setNativeCursor(c);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("/res/sprites/blocks/dirt.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        if (texture != null) {
+//            texture.bind();
+//        }
 
         GL11.glColor3f(1.0f, 1.0f, 1.0f);
 

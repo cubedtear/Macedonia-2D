@@ -1,11 +1,11 @@
 <project name="Macedonia 2D" basedir="." default="init">
 
     <property file="build.properties"/>
-    <property name="build.dir" value="build"/>
+    <property name="build.dir" value="bin"/>
     <property name="src.dir" value="src"/>
     <property name="lib.dir" value="lib"/>
     <property name="out.jar" value="M2D.jar"/>
-    <property name="manifest.file" value="manifest.txt"/>
+    <property name="manifest.file" value="META-INF/MANIFEST.MF"/>
     <property name="build.compiler" value="modern"/>
     <property name="target.vm" value="1.7"/>
 
@@ -25,6 +25,7 @@
     <target name="clean" description="Clean up">
         <echo>Cleaning up...</echo>
         <delete dir="${build.dir}"/>
+        <delete file="${out.jar}"/>
     </target>
 
     <target name="build" description="Build project" depends="clean">

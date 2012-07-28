@@ -37,7 +37,6 @@ public class Block implements Drawable {
     public static final Block bedrock = new BlockBedRock(); // ID = 7
     public static final Block cracked = new BlockCracked(); // ID = 8
 
-    public static final Block blockTest = new BlockCracked(); // ID = 9
     private static PackedSpriteSheet defaultSpriteSheet;
 
     public void addBlock(Block block, int id) {
